@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AlgoVault</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+
+    <!-- ── Header ─────────────────────────────────────────────────────────── -->
+    <header class="header">
+      <div class="brand">
+        <img src="../../icon.png" alt="AlgoVault" class="brand-icon">
+        <span class="brand-name">AlgoVault</span>
+      </div>
+      <nav class="tab-nav" role="tablist">
+        <button class="tab-btn active" data-tab="dashboard" title="Dashboard" role="tab" aria-selected="true">
+          <!-- Bar-chart icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+          </svg>
+        </button>
+        <button class="tab-btn" data-tab="vault" title="Solutions" role="tab" aria-selected="false">
+          <!-- Stack icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </button>
+        <button class="tab-btn" data-tab="settings" title="Settings" role="tab" aria-selected="false">
+          <!-- Gear icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9"/>
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ── Dashboard Tab ──────────────────────────────────────────────────── -->
+    <main id="tab-dashboard" class="tab-pane" role="tabpanel">
+
+      <div class="streak-banner" id="streak-banner">
+        <span class="streak-flame">🔥</span>
+        <span class="streak-count" id="streak-count">0</span>
+        <span class="streak-label">day streak</span>
+      </div>
+
+      <div class="total-card">
+        <div class="total-label">PROBLEMS VAULTED</div>
+        <div class="total-value" id="stat-total">0</div>
+      </div>
+
+      <div class="diff-row">
+        <div class="diff-pill easy">
+          <span class="diff-val" id="stat-easy">0</span>
+          <span class="diff-tag">EASY</span>
+        </div>
+        <div class="diff-pill medium">
+          <span class="diff-val" id="stat-medium">0</span>
+          <span class="diff-tag">MED</span>
+        </div>
+        <div class="diff-pill hard">
+          <span class="diff-val" id="stat-hard">0</span>
+          <span class="diff-tag">HARD</span>
+        </div>
+      </div>
+
+      <div class="lang-section">
+        <div class="section-label">LANGUAGES</div>
+        <div id="lang-bars" class="lang-bars">
+          <p class="empty-hint">No data yet</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── Vault Tab ──────────────────────────────────────────────────────── -->
+    <main id="tab-vault" class="tab-pane hidden" role="tabpanel">
+
+      <div class="filter-bar">
+        <input type="text" id="search-input" class="search-input" placeholder="Search problems…" autocomplete="off">
+        <div class="filter-row">
+          <select id="diff-filter" class="filter-select">
+            <option value="">All Difficulties</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+          <select id="lang-filter" class="filter-select">
+            <option value="">All Languages</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="vault-scroll">
+        <ul id="solution-list" class="solution-list" aria-label="Vaulted solutions">
+          <li class="empty-hint">No solutions vaulted yet.</li>
+        </ul>
+      </div>
+
+    </main>
+
+    <!-- ── Settings Tab ───────────────────────────────────────────────────── -->
+    <main id="tab-settings" class="tab-pane hidden" role="tabpanel">
+      <div class="settings-scroll">
+
+        <fieldset class="settings-section">
+          <legend class="settings-legend">GITHUB</legend>
+
+          <div class="form-group">
+            <label for="github-token">Personal Access Token</label>
+            <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="github-owner">Repository Owner</label>
+            <input type="text" id="github-owner" placeholder="octocat">
+          </div>
+          <div class="form-group">
+            <label for="github-repo">Repository Name</label>
+            <input type="text" id="github-repo" placeholder="my-solutions">
+          </div>
+          <div class="form-group">
+            <label for="github-folder">Solutions Folder <span class="label-hint">(optional)</span></label>
+            <input type="text" id="github-folder" placeholder="solutions">
+          </div>
+        </fieldset>
+
+        <fieldset class="settings-section">
+          <legend class="settings-legend">ORGANIZATION</legend>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="org-mode" value="flat"> Flat
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="org-mode" value="byDifficulty"> By Difficulty
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="org-mode" value="byLanguage"> By Language
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="settings-section">
+          <legend class="settings-legend">PREFERENCES</legend>
+          <label class="toggle-label">
+            <input type="checkbox" id="notif-toggle">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span>Desktop notifications</span>
+          </label>
+        </fieldset>
+
+        <button id="save-btn" class="primary-btn">SAVE CONFIGURATION</button>
+        <div id="status-msg" class="status-msg" role="status" aria-live="polite"></div>
+
+      </div>
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

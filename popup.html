@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Leet2Git</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-container">
+        <img src="icon.png" alt="Leet2Git Logo" class="logo-img">
+        <h1 class="logo">Leet2Git</h1>
+      </div>
+      <button id="tab-toggle" class="icon-btn" title="Toggle Settings">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Main Dashboard View -->
+    <main id="dashboard-view" class="view">
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-label">TOTAL SYNCED</div>
+          <div class="stat-value" id="stat-total">0</div>
+        </div>
+        
+        <div class="difficulty-grid">
+          <div class="diff-card easy">
+            <span class="diff-num" id="stat-easy">0</span>
+            <span class="diff-label">EASY</span>
+          </div>
+          <div class="diff-card medium">
+            <span class="diff-num" id="stat-medium">0</span>
+            <span class="diff-label">MEDIUM</span>
+          </div>
+          <div class="diff-card hard">
+            <span class="diff-num" id="stat-hard">0</span>
+            <span class="diff-label">HARD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="history-container">
+        <div class="section-header">
+          <span class="section-title">RECENT SYNCED SOLUTIONS</span>
+        </div>
+        <div class="history-scroll">
+          <ul id="history-list" class="history-list">
+            <li class="empty-msg">No solutions synced yet. Solve a LeetCode problem!</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Settings View (hidden by default) -->
+    <main id="settings-view" class="view hidden">
+      <div class="form-container">
+        <div class="form-group">
+          <label for="github-token">GITHUB PERSONAL ACCESS TOKEN</label>
+          <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label for="github-owner">REPOSITORY OWNER / USERNAME</label>
+          <input type="text" id="github-owner" placeholder="octocat">
+        </div>
+        <div class="form-group">
+          <label for="github-repo">REPOSITORY NAME</label>
+          <input type="text" id="github-repo" placeholder="leetcode-solutions">
+        </div>
+        
+        <button id="save-btn" class="primary-btn">
+          SAVE CONFIGURATION
+        </button>
+        <div id="status-message" class="status-message"></div>
+      </div>
+    </main>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

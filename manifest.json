@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "AlgoVault",
+  "version": "2.0.0",
+  "description": "Automatically vault your accepted coding solutions to GitHub with smart organization, streaks, and topic tracking.",
+  "permissions": [
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://api.github.com/*"
+  ],
+  "background": {
+    "service_worker": "src/worker/service.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["src/interceptor/page_hook.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["src/interceptor/bridge.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_icon": "icon.png"
+  }
+}
